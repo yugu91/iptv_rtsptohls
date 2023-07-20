@@ -7,11 +7,14 @@ module.exports =  function(command, isDebug, options) {
 
         ffmpeg.on('error', (err) => {
             console.error(moment().format("HH:mm"),'ffmpeg', err)
-            reject()
+            if(!isCallBacked)
+            reject(err)
         })
         
         ffmpeg.on('close', (code) => {
             console.log(moment().format("HH:mm"),'ffmpeg', 'closed', code)
+            if(!isCallBacked)
+            reject("closed");
         })
 
         ffmpeg.stderr.on('data', (data) => {
