@@ -13,6 +13,7 @@ const tsNum = 10;
 const tsTime = 5;
 // RTSP's type, HTTP/UDP/TCP
 const RTSPType = "tcp"
+const isDebug = false;
 /**
  * Parse the IPTV lives list to M3U8 play list
  * @param {String} host host name
@@ -54,7 +55,7 @@ router.get("/create", async (req, res) => {
     }
     try {
         console.log("Process call begin:", processName);
-        ffmpeg = await spaw_process('ffmpeg', [
+        ffmpeg = await spaw_process('ffmpeg', isDebug, [
             '-rtsp_transport', RTSPType,
             // '-thread_queue_size', '32768',
             // '-n',
@@ -80,7 +81,7 @@ router.get("/create", async (req, res) => {
         ]);       
         console.log("Porcess class end:",processName) 
     } catch (error) {
-        console.error(err);
+        console.error(error);
         res.json({error: error});
         return;
     }
