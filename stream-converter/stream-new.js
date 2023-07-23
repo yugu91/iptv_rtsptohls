@@ -10,7 +10,7 @@ var process = {};
 // How many ts file are in M3U8 play list
 const tsNum = 10;
 // How many longer on each ts file
-const tsTime = 5;
+const tsTime = 7;
 // RTSP's type, HTTP/UDP/TCP
 const RTSPType = "tcp"
 const isDebug = false;
@@ -70,7 +70,7 @@ router.get("/create", async (req, res) => {
             // '-r', '15',
             '-hls_list_size', tsNum.toString(),
             '-hls_flags', 'split_by_time',
-            '-hls_allow_cache', '1',
+            '-hls_allow_cache', '2',
             // '-sc_threshold', '0',
             '-hls_init_time', '1',
             // '-b:v', '500k',
